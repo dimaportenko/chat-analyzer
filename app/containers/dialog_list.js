@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchDialogs } from './../actions/dialogs';
+import DialogItem from './dialog-item';
 
 
 class DialogList extends Component {
@@ -19,9 +20,7 @@ class DialogList extends Component {
           return '';
         }
         return (
-          <li className="list-group-item" key={dialog.chat_id ? dialog.chat_id : dialog.uid}>
-            {dialog.chat_id ? dialog.title : dialog.uid}
-          </li>
+          <DialogItem dialog={dialog} key={dialog.chat_id ? dialog.chat_id : dialog.uid} />
         );
       });
     }
@@ -36,8 +35,6 @@ class DialogList extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('mapStateToProps(state)');
-  console.log(state);
   return { dialogs: state.dialogs}
 }
 

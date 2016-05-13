@@ -21,7 +21,7 @@ function getAuthUrl() {
   const state = store.getState();
   var authUrl = ROOT_URL +
     'offset=' + '0' +
-    '&count=' + '20' +
+    '&count=' + '50' +
     '&access_token=' + state.accessToken
     ;
   return authUrl;
