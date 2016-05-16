@@ -5,9 +5,10 @@
 import { FETCH_USERS } from '../actions/users';
 
 export default function(state = {}, action) {
-  //console.log(action);
   switch (action.type) {
     case FETCH_USERS: {
+      console.log(action.type);
+      console.log(action.payload.data.response);
       var users = Object.assign({}, state);
 
       action.payload.data.response.map((user) => {

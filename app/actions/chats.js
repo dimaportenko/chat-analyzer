@@ -4,28 +4,38 @@
 import axios from 'axios';
 import { store } from './../store/store'
 
-export const FETCH_CHAT = 'FETCH_CHAT';
+export const FETCH_CHATS = 'FETCH_CHATS';
 
 const ROOT_URL = 'https://api.vk.com/method/messages.getChat?';
 
-export function fetchChat(chatId = null) {
-  const { chats } = store.getState();
+export function fetchChats(chatIds = []) {
+  const { length } = chatIds;
+  if(length != 0) {
+    const { chats } = store.getState();
+    let ids = [];
+    if(chats) {
+      for(let i = 0; i < length; i++) {
+        const chatId = chatIds[i];
+        if(!chats[chatId]) {
+          ids.push(chatId);
+        }
+      }
+    } else {
+      ids = chatIds;
+    }
 
-  if(chatId && !chats[chatId]) {
-
-    const request = axios.get(getAuthUrl(chatId));
-
+    const request = axios.get(getAuthUrl(ids));
     return {
-      type: FETCH_CHAT,
+      type: FETCH_CHATS,
       payload: request
     };
   }
 }
 
-function getAuthUrl(id) {
+function getAuthUrl(ids) {
   const state = store.getState();
   var authUrl = ROOT_URL +
-    'chat_id=' + id +
+    'chat_ids=' + ids.toString() +
     '&fields=' + 'photo_50' +
     '&access_token=' + state.accessToken
     ;

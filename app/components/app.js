@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DialogList from '../containers/dialog_list';
+import DialogList from '../containers/dialog-list';
 //import SearchBar from '../containers/search_bar';
 
 export default class App extends Component {
