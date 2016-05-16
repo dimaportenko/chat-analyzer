@@ -29,7 +29,9 @@ class DialogItem extends Component {
     } else {
       return (
         <tr>
-          Loading...
+          <td>
+            Loading...
+          </td>
         </tr>
       );
     }
