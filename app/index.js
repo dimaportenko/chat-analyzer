@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { remote } from 'electron';
 
 
-import App from './components/app';
+import App from './containers/app';
 import { accessToken } from './actions/access-token';
 import { store } from './store/store';
 

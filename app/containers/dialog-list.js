@@ -55,7 +55,6 @@ class DialogList extends Component {
           <DialogItem dialog={dialog} key={dialog.uid} />
         );
       }
-      return <tr />;
     });
   }
 

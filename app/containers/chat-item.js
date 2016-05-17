@@ -3,6 +3,7 @@
  */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { setScreen, ScreenTypes } from './../actions/screens';
 
 
 class ChatItem extends Component {
@@ -42,10 +43,14 @@ class ChatItem extends Component {
     }
   }
 
+  handleClick() {
+    this.props.setScreen(ScreenTypes.selectedChat);
+  }
+
   render() {
     const { dialog } = this.props;
     return (
-      <tr>
+      <tr onClick={this.handleClick.bind(this)} >
         <td>
           { this.renderChatImage() }
         </td>
@@ -55,6 +60,7 @@ class ChatItem extends Component {
       </tr>
     );
   }
+
 }
 
 function mapStateToProps(state) {
@@ -63,4 +69,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(ChatItem);
+export default connect(mapStateToProps, {setScreen})(ChatItem);

@@ -4,9 +4,9 @@
 
 export const ACCESS_TOKEN = 'ACCESS_TOKEN';
 
-export const accessToken = (token = null) => {
+export function accessToken(token = null) {
   return {
     type: ACCESS_TOKEN,
     payload: token
   };
-};
+}
