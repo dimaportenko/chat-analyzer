@@ -2,7 +2,7 @@
  * Created by troublesohard on 5/13/16.
  */
 import axios from 'axios';
-import { store } from './../store/store'
+import { store } from './../store/store';
 
 export const FETCH_DIALOGS = 'FETCH_DIALOGS';
 
@@ -19,10 +19,6 @@ export function fetchDialogs() {
 
 function getAuthUrl() {
   const state = store.getState();
-  var authUrl = ROOT_URL +
-    'offset=' + '0' +
-    '&count=' + '50' +
-    '&access_token=' + state.accessToken
-    ;
+  const authUrl = `${ROOT_URL}offset=0&count=50&access_token=${state.accessToken}`;
   return authUrl;
 }

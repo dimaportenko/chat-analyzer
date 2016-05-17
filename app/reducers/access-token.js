@@ -3,12 +3,13 @@
  */
 import { ACCESS_TOKEN } from '../actions/access-token';
 
-export default function(state = [], action) {
-  console.log(action);
+export default function (state = [], action) {
   switch (action.type) {
     case ACCESS_TOKEN: {
       return action.payload;
     }
+    default: {
+      return state;
+    }
   }
-  return state;
 }

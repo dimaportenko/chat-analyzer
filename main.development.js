@@ -1,5 +1,3 @@
-'use strict';
-
 import Authentication from './app/utils/authentication';
 import { app, BrowserWindow, ipcMain, Menu, shell } from 'electron';
 
@@ -23,9 +21,6 @@ app.on('ready', () => {
   if (mainWindow) return;
 
   Authentication.authorized(() => {
-    console.log('main on ready authentication');
-    console.log(Authentication.defaultAccount());
-
     global.vkAccount = Authentication.defaultAccount();
 
     mainWindow = new BrowserWindow({
@@ -252,14 +247,9 @@ app.on('ready', () => {
 });
 
 ipcMain.on('start-authentication', (event) => {
-  new Authentication((token) => {
+  const auth = new Authentication((token) => {
     Authentication.addToken(token, () => {
       event.sender.send('finish-authentication', token);
-    })
-  })
-})
-
-ipcMain.on('console-log', (event, args) => {
-  console.log('console-log');
-  console.log(args);
-})
+    });
+  });
+});

@@ -2,7 +2,7 @@
  * Created by troublesohard on 5/13/16.
  */
 import axios from 'axios';
-import { store } from './../store/store'
+import { store } from './../store/store';
 
 export const FETCH_CHATS = 'FETCH_CHATS';
 
@@ -10,13 +10,13 @@ const ROOT_URL = 'https://api.vk.com/method/messages.getChat?';
 
 export function fetchChats(chatIds = []) {
   const { length } = chatIds;
-  if(length != 0) {
+  if (length !== 0) {
     const { chats } = store.getState();
     let ids = [];
-    if(chats) {
-      for(let i = 0; i < length; i++) {
+    if (chats) {
+      for (let i = 0; i < length; i++) {
         const chatId = chatIds[i];
-        if(!chats[chatId]) {
+        if (!chats[chatId]) {
           ids.push(chatId);
         }
       }
@@ -34,10 +34,6 @@ export function fetchChats(chatIds = []) {
 
 function getAuthUrl(ids) {
   const state = store.getState();
-  var authUrl = ROOT_URL +
-    'chat_ids=' + ids.toString() +
-    '&fields=' + 'photo_50' +
-    '&access_token=' + state.accessToken
-    ;
+  const authUrl = `${ROOT_URL}chat_ids=${ids.toString()}&fields=photo_50&access_token=${state.accessToken}`;
   return authUrl;
 }

@@ -8,5 +8,5 @@ export const accessToken = (token = null) => {
   return {
     type: ACCESS_TOKEN,
     payload: token
-  }
-}
+  };
+};

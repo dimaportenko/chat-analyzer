@@ -2,12 +2,12 @@ import fs from 'fs';
 
 export default class JsonLoader {
   static write(name, data) {
-    var path = `${__dirname}/../../resources/${name}`;
+    const path = `${__dirname}/../../resources/${name}`;
     return fs.writeFileSync(path, JSON.stringify(data));
   }
 
   static read(name) {
-    var path = `${__dirname}/../../resources/${name}`;
+    const path = `${__dirname}/../../resources/${name}`;
 
     if (!fs.existsSync(path)) {
       return null;
@@ -16,8 +16,8 @@ export default class JsonLoader {
   }
 
   static writeHome(name, data) {
-    var path = `${this.getUserHome()}/${name}`;
-    let ret = fs.writeFileSync(path, JSON.stringify(data))
+    const path = `${this.getUserHome()}/${name}`;
+    const ret = fs.writeFileSync(path, JSON.stringify(data));
     if (process.platform !== 'win32') {
       fs.chmodSync(path, '600');
     }
@@ -25,7 +25,7 @@ export default class JsonLoader {
   }
 
   static readHome(name) {
-    var path = `${this.getUserHome()}/${name}`;
+    const path = `${this.getUserHome()}/${name}`;
 
     if (!fs.existsSync(path)) {
       return null;

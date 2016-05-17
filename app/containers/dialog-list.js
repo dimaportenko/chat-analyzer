@@ -4,77 +4,78 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchDialogs } from './../actions/dialogs';
-import { fetchUsers } from './../actions/users'
-import { fetchChats } from './../actions/chats'
+import { fetchUsers } from './../actions/users';
+import { fetchChats } from './../actions/chats';
 import DialogItem from './dialog-item';
 import ChatItem from './chat-item';
 
 
 class DialogList extends Component {
 
-    componentWillMount() {
-        this.props.fetchDialogs();
+  componentWillMount() {
+    this.props.fetchDialogs();
+  }
+
+  fetchData() {
+    const { dialogs } = this.props;
+    if (!dialogs) {
+      return;
     }
-
-    fetchData() {
-      const { dialogs } = this.props;
-      if ( !dialogs ) {
-        return;
-      }
-      let chatIds = [];
-      let userIds = [];
-      const { length } = dialogs;
-      let dialog = null;
-      for (var i = 0; i < length; ++i) {
-        dialog = dialogs[i];
-        if(dialog.chat_id) {
-          chatIds.push(dialog.chat_id);
-        } else if(dialog.uid) {
-          userIds.push(dialog.uid);
-        }
-      }
-
-      if(userIds.length) {
-        this.props.fetchUsers(userIds);
-      }
-      if(chatIds.length) {
-        this.props.fetchChats(chatIds);
+    const chatIds = [];
+    const userIds = [];
+    const { length } = dialogs;
+    let dialog = null;
+    for (let i = 0; i < length; ++i) {
+      dialog = dialogs[i];
+      if (dialog.chat_id) {
+        chatIds.push(dialog.chat_id);
+      } else if (dialog.uid) {
+        userIds.push(dialog.uid);
       }
     }
 
-    renderDialogs() {
-      this.fetchData();
-
-      return this.props.dialogs.map(dialog => {
-        if(dialog.chat_id) {
-          return (
-            <ChatItem dialog={dialog} key={dialog.chat_id} />
-          );
-        } else if(dialog.uid) {
-          return (
-            <DialogItem dialog={dialog} key={dialog.uid} />
-          );
-        }
-      });
+    if (userIds.length) {
+      this.props.fetchUsers(userIds);
     }
+    if (chatIds.length) {
+      this.props.fetchChats(chatIds);
+    }
+  }
 
-    render() {
-      const { dialogs } = this.props;
-      if ( !dialogs || !dialogs.length ) {
-        return <div className="loader" /> ;
+  renderDialogs() {
+    this.fetchData();
+
+    return this.props.dialogs.map(dialog => {
+      if (dialog.chat_id) {
+        return (
+          <ChatItem dialog={dialog} key={dialog.chat_id} />
+        );
+      } else if (dialog.uid) {
+        return (
+          <DialogItem dialog={dialog} key={dialog.uid} />
+        );
       }
-      return (
-          <table className="table table-hover">
-            <tbody className="dialog-table-body">
-              { this.renderDialogs() }
-            </tbody>
-          </table>
-      );
+      return <tr />;
+    });
+  }
+
+  render() {
+    const { dialogs } = this.props;
+    if (!dialogs || !dialogs.length) {
+      return <div className="loader" />;
     }
+    return (
+        <table className="table table-hover">
+          <tbody className="dialog-table-body">
+            { this.renderDialogs() }
+          </tbody>
+        </table>
+    );
+  }
 }
 
 function mapStateToProps(state) {
-  return { dialogs: state.dialogs}
+  return { dialogs: state.dialogs };
 }
 
 export default connect(mapStateToProps, { fetchDialogs, fetchUsers, fetchChats })(DialogList);

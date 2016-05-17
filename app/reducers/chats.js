@@ -4,21 +4,20 @@
 
 import { FETCH_CHATS } from '../actions/chats';
 
-export default function(state = {}, action) {
-  //console.log(action);
+export default function (state = {}, action) {
   switch (action.type) {
     case FETCH_CHATS: {
       const chats = Object.assign({}, state);
 
       action.payload.data.response.map((chat) => {
         chats[chat.chat_id] = chat;
+        return chat;
       });
-
-      console.log('FETCH_CHATS reducer');
-      console.log(chats);
 
       return chats;
     }
+    default: {
+      return state;
+    }
   }
-  return state;
 }

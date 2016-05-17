@@ -9,18 +9,14 @@ import { remote } from 'electron';
 
 import App from './components/app';
 import { accessToken } from './actions/access-token';
-import { store } from './store/store'
+import { store } from './store/store';
 
 
-console.log(store);
 store.dispatch(accessToken(remote.getGlobal('vkAccount').accessToken));
 
 ReactDOM.render(
   <Provider store={store}>
     <App />
-  </Provider> ,
+  </Provider>,
   document.querySelector('#root')
 );
-
-
-

@@ -6,10 +6,10 @@ import users from './users';
 import chats from './chats';
 
 const rootReducer = combineReducers({
-    accessToken,
-    dialogs,
-    users,
-    chats
+  accessToken,
+  dialogs,
+  users,
+  chats
 });
 
 export default rootReducer;
