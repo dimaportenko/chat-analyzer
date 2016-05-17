@@ -29,7 +29,7 @@ class ChatItem extends Component {
           {
             images.map(image => {
               ++imageNumber;
-              return <img src={image} className={`avatar-50 img-${imageNumber}`} />;
+              return <img src={image} className={`avatar-50 img-${imageNumber}`} key={imageNumber} />;
             })
           }
         </div>

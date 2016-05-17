@@ -54,8 +54,6 @@ class DialogList extends Component {
           return (
             <DialogItem dialog={dialog} key={dialog.uid} />
           );
-        } else {
-          return '';
         }
       });
     }
@@ -67,7 +65,7 @@ class DialogList extends Component {
       }
       return (
           <table className="table table-hover">
-            <tbody>
+            <tbody className="dialog-table-body">
               { this.renderDialogs() }
             </tbody>
           </table>
