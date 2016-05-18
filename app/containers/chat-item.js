@@ -4,9 +4,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setScreen, ScreenTypes } from './../actions/screens';
+import { selectDialog } from './../actions/dialog-select';
 
 
 class ChatItem extends Component {
+
+  handleClick() {
+    this.props.selectDialog(this.props.dialog.chat_id);
+    this.props.setScreen(ScreenTypes.selectedChat);
+  }
 
   renderChatImage() {
     const images = [];
@@ -43,9 +49,6 @@ class ChatItem extends Component {
     }
   }
 
-  handleClick() {
-    this.props.setScreen(ScreenTypes.selectedChat);
-  }
 
   render() {
     const { dialog } = this.props;
@@ -69,4 +72,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {setScreen})(ChatItem);
+export default connect(mapStateToProps, { setScreen, selectDialog })(ChatItem);

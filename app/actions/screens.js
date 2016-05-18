@@ -7,7 +7,8 @@ export const SCREEN_TYPE = 'SCREEN_TYPE';
 export const ScreenTypes = {
   dialogsList: 0,
   selectedDialog: 1,
-  selectedChat: 2
+  selectedChat: 2,
+  analyze: 3
 };
 
 export function setScreen(screenType = ScreenTypes.dialogsList) {
@@ -15,4 +16,4 @@ export function setScreen(screenType = ScreenTypes.dialogsList) {
     type: SCREEN_TYPE,
     payload: screenType
   };
-};
+}

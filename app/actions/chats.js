@@ -24,10 +24,17 @@ export function fetchChats(chatIds = []) {
       ids = chatIds;
     }
 
-    const request = axios.get(getAuthUrl(ids));
+    if (ids.length) {
+      const request = axios.get(getAuthUrl(ids));
+      return {
+        type: FETCH_CHATS,
+        payload: request
+      };
+    }
+
     return {
       type: FETCH_CHATS,
-      payload: request
+      payload: { data: {} }
     };
   }
 }

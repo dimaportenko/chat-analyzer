@@ -9,10 +9,16 @@ export default function (state = {}, action) {
     case FETCH_CHATS: {
       const chats = Object.assign({}, state);
 
-      action.payload.data.response.map((chat) => {
-        chats[chat.chat_id] = chat;
-        return chat;
-      });
+      const { response } = action.payload.data;
+      if (response && response.length) {
+        response.map((chat) => {
+          chats[chat.chat_id] = chat;
+          return chat;
+        });
+      } else {
+        console.log('FETCH_CHATS error');
+        console.log(action.payload.data);
+      }
 
       return chats;
     }

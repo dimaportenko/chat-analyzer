@@ -39,3 +39,9 @@
 .dialog-table-body td {
   vertical-align: middle;
 }
+
+.btn-back,
+.screen-label {
+  margin: 10px;
+  float: left;
+}

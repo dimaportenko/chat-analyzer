@@ -13,7 +13,10 @@ import ChatItem from './chat-item';
 class DialogList extends Component {
 
   componentWillMount() {
-    this.props.fetchDialogs();
+    const { dialogs } = this.props;
+    if (!dialogs || !dialogs.length) {
+      this.props.fetchDialogs();
+    }
   }
 
   fetchData() {
@@ -64,11 +67,14 @@ class DialogList extends Component {
       return <div className="loader" />;
     }
     return (
+      <div>
+        <p className="screen-label">Диалоги</p>
         <table className="table table-hover">
           <tbody className="dialog-table-body">
             { this.renderDialogs() }
           </tbody>
         </table>
+      </div>
     );
   }
 }
