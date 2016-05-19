@@ -4,9 +4,9 @@
 
 export const DIALOG_SELECT = 'DIALOG_SELECT';
 
-export function selectDialog(id = -1) {
+export function selectDialog(object = {id: -1}) {
   return {
     type: DIALOG_SELECT,
-    payload: id
+    payload: object
   };
 }

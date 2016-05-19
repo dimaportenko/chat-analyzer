@@ -1,8 +1,9 @@
+import { ScreenTypes } from './../actions/screens';
+import ChatUserList from './chat-user-list';
 import React, { Component } from 'react';
 import DialogList from './dialog-list';
-import ChatUserList from './chat-user-list';
 import { connect } from 'react-redux';
-import { ScreenTypes } from './../actions/screens';
+import Analyzer from './analyzer';
 
 class App extends Component {
 
@@ -16,6 +17,9 @@ class App extends Component {
       }
       case ScreenTypes.selectedDialog: {
         return <div>Seleted Dialog</div>;
+      }
+      case ScreenTypes.analyze: {
+        return <Analyzer />;
       }
       default: {
         return <DialogList />;

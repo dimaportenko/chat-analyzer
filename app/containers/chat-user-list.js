@@ -53,7 +53,7 @@ class ChatUserList extends Component {
 function mapStateToProps(state) {
   return {
     chats: state.chats,
-    chatId: state.selectedDialog
+    chatId: state.selectedDialog.id
   };
 }
 

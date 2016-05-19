@@ -10,7 +10,10 @@ import { selectDialog } from './../actions/dialog-select';
 class ChatItem extends Component {
 
   handleClick() {
-    this.props.selectDialog(this.props.dialog.chat_id);
+    this.props.selectDialog({
+      id: this.props.dialog.chat_id,
+      isChat: true
+    });
     this.props.setScreen(ScreenTypes.selectedChat);
   }
 
